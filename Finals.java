@@ -8,7 +8,7 @@ import java.awt.Dimension;
 
 public class Finals {
     //Array Data
-    private static LinkedList<String> names  = new LinkedList<String>();
+    private static LinkedList<String> firstName  = new LinkedList<String>();
     private static ArrayList<String> Age  = new ArrayList<String>();
 
 
@@ -26,13 +26,21 @@ public class Finals {
 
 
 
-        names.add("Angelo");
-        names.add("Denis");
-        names.add("Linus");
-        names.add("Felix");
+        firstName.add("Angelo");Age.add("34");
+        firstName.add("Denis");Age.add("12");
+        firstName.add("Linus");Age.add("32");
+        firstName.add("Felix");Age.add("24");
 
-        JList nameList = new JList(names.toArray());
-        JList nameList1 = new JList(names.toArray()); //should be reversed
+        JList nameList = new JList(firstName.toArray());
+        
+        nameList.addMouseListener(new MouseAdapter(){
+            public static void mousePressed(MouseEvent e){
+                for (int i=0;i<firstName.size();i++){
+                    System.out.println(firstName.get(i));
+                }
+            }
+        });
+        JList nameList1 = new JList(firstName.toArray()); //should be reversed
 
         
         JTabbedPane ListPane = new JTabbedPane();
