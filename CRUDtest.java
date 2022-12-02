@@ -18,6 +18,19 @@ public class CRUDtest {
         EmailList.add(email);
         numberList.add(number);
     }
+    public static void InsertRow(int row,String Fname, String lName, String BDay, String Addr,String email, String number ){
+        try {
+            db.get(row);
+            firstNameList.add(Fname);
+            lastNameList.add(lName);
+            BirthdayList.add(BDay);
+            AddressList.add(Addr);
+            EmailList.add(email);
+            numberList.add(number);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     public static void main(String[] args) {
         
     }
