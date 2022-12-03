@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.Dimension;
 
-public class Finals {
+public class GUI_test {
     //Array Data
     private static LinkedList<String> firstName  = new LinkedList<String>();
     private static ArrayList<String> Age  = new ArrayList<String>();
