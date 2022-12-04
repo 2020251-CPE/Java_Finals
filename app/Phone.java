@@ -10,7 +10,7 @@ public class Phone{
     public static ArrayList<String> AddressList = new ArrayList<String>();
     public static ArrayList<String> EmailList = new ArrayList<String>();
     public static ArrayList<String> numberList = new ArrayList<String>();
-
+    //CREATE
     public static void addRow(String fName, String lName, String BDay, String Addr,String email, String number){
         firstNameList.add(fName);
         lastNameList.add(lName);
@@ -19,6 +19,7 @@ public class Phone{
         EmailList.add(email);
         numberList.add(number);
     }
+    //CREATE with specific index
     public static void InsertRow(int row,String fName, String lName, String BDay, String Addr,String email, String number ){
         try {
             db.get(row);
@@ -32,19 +33,7 @@ public class Phone{
             System.out.println(e);
         }
     }
-   
-    public static void deleteRow(String fName){
-        for (int i = 0; i < firstNameList.size(); i++) {
-            if (fName.equals(firstNameList.get(i))){
-                firstNameList.remove(i);
-                lastNameList.remove(i);
-                BirthdayList.remove(i);
-                AddressList.remove(i);
-                EmailList.remove(i);
-                numberList.remove(i);
-            }
-        }
-    }
+    // READ a single row
     public static void searchRow(String fName){
         try {
             for (int i = 0; i < firstNameList.size(); i++) {
@@ -56,13 +45,46 @@ public class Phone{
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Query Not Found :(");
         }
-
     }
+    //READ all rows
     public static void getAllRows() {
         for (int i = 0; i < firstNameList.size(); i++) {
             System.out.println(firstNameList.get(i)+" "+lastNameList.get(i)+" "+BirthdayList.get(i)+" "+AddressList.get(i)+" "+EmailList.get(i)+" "+numberList.get(i) );
         }
     }
+    //UPDATE in any field
+    public static void updateRow(String fName,ArrayList<String> field, String input) {
+        try {
+            for (int i = 0; i < firstNameList.size(); i++) {
+                if (firstNameList.get(i).equals(fName)) {
+                    String oldValue = field.get(i);
+                    field.set(i, input);
+                    System.out.println(oldValue + " is now " + input);
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Query Not Found :(");
+        }
+    }
+    //DELETE a row
+    public static void deleteRow(String fName){
+        try {
+            for (int i = 0; i < firstNameList.size(); i++) {
+                if (fName.equals(firstNameList.get(i))){
+                    firstNameList.remove(i);
+                    lastNameList.remove(i);
+                    BirthdayList.remove(i);
+                    AddressList.remove(i);
+                    EmailList.remove(i);
+                    numberList.remove(i);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Query Not Found :(");
+        }
+        
+    }
+    //SORT first name (used for GUI only, not really arranging all fields)
     static String[] bubbleSort(ArrayList<String> arr){
         String[] countries = arr.toArray(String[]::new);
         int size = countries.length;  
@@ -77,7 +99,7 @@ public class Phone{
                 }  
             }  
         }  
-        return countries;
+        return countries; //returns String[]
     }
     public static void main(String[] args) {
         //Data structuring
@@ -103,6 +125,10 @@ public class Phone{
         System.out.println(Arrays.toString(bubbleSort(firstNameList)));
         System.out.println("Query: "+bubbleSort(firstNameList)[0]);
         searchRow(bubbleSort(firstNameList)[0].toString());
+
+        updateRow("Angelo", firstNameList, "Angelo Rafael");
+        getAllRows();
+        System.out.println(db.get(0));
     }
 }
 
