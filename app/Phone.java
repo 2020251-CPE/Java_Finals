@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Phone{
     public static ArrayList<ArrayList<String>> db = new ArrayList<ArrayList<String>>();
@@ -10,18 +11,18 @@ public class Phone{
     public static ArrayList<String> EmailList = new ArrayList<String>();
     public static ArrayList<String> numberList = new ArrayList<String>();
 
-    public static void addRow(String Fname, String lName, String BDay, String Addr,String email, String number){
-        firstNameList.add(Fname);
+    public static void addRow(String fName, String lName, String BDay, String Addr,String email, String number){
+        firstNameList.add(fName);
         lastNameList.add(lName);
         BirthdayList.add(BDay);
         AddressList.add(Addr);
         EmailList.add(email);
         numberList.add(number);
     }
-    public static void InsertRow(int row,String Fname, String lName, String BDay, String Addr,String email, String number ){
+    public static void InsertRow(int row,String fName, String lName, String BDay, String Addr,String email, String number ){
         try {
             db.get(row);
-            firstNameList.add(Fname);
+            firstNameList.add(fName);
             lastNameList.add(lName);
             BirthdayList.add(BDay);
             AddressList.add(Addr);
@@ -31,6 +32,7 @@ public class Phone{
             System.out.println(e);
         }
     }
+   
     public static void deleteRow(String fName){
         for (int i = 0; i < firstNameList.size(); i++) {
             if (fName.equals(firstNameList.get(i))){
@@ -47,7 +49,7 @@ public class Phone{
         try {
             for (int i = 0; i < firstNameList.size(); i++) {
                 if (firstNameList.get(i).equals(fName)) {
-                    System.out.println("Result:" + firstNameList.get(i) );
+                    System.out.println("Result:"+firstNameList.get(i)+" "+lastNameList.get(i)+" "+BirthdayList.get(i)+" "+AddressList.get(i)+" "+EmailList.get(i)+" "+numberList.get(i) );
                     break;
                 }
             }
@@ -58,8 +60,24 @@ public class Phone{
     }
     public static void getAllRows() {
         for (int i = 0; i < firstNameList.size(); i++) {
-            System.out.println(firstNameList.get(i) + lastNameList.get(i)+BirthdayList.get(0)+AddressList.get(i)+EmailList.get(i)+numberList.get(i));
+            System.out.println(firstNameList.get(i)+" "+lastNameList.get(i)+" "+BirthdayList.get(i)+" "+AddressList.get(i)+" "+EmailList.get(i)+" "+numberList.get(i) );
         }
+    }
+    static String[] bubbleSort(ArrayList<String> arr){
+        String[] countries = arr.toArray(String[]::new);
+        int size = countries.length;  
+        for(int i = 0; i<size-1; i++){  
+            for (int j = i+1; j<countries.length; j++){  
+            //compares each elements of the array to all the remaining elements  
+                if(countries[i].compareTo(countries[j])>0){  
+                    //swapping array elements  
+                    String temp = countries[i];  
+                    countries[i] = countries[j];  
+                    countries[j] = temp;  
+                }  
+            }  
+        }  
+        return countries;
     }
     public static void main(String[] args) {
         //Data structuring
@@ -71,13 +89,20 @@ public class Phone{
         db.add(numberList);
 
         //Adding Sample Data
-        addRow("Angelo", "Recio", "07-02-2001", "Balete", "2020251@ub.edu.ph", "097725778170");
         addRow("Joe", "Mama", "04-20-6969", "YoMama", "ElonMusk@gmail.com", "09255224380");
+        addRow("Jedrick", "Idol", "02-20-1993", "Worldwide", "BestTiktoker@tiktok.com", "09876543210");
+        addRow("Angelo", "Recio", "07-02-2001", "Balete", "2020251@ub.edu.ph", "097725778170");
         
-
-        System.out.println("hi");
         System.out.println(db.get(0));
+        System.out.println();
+        System.out.println("All Data Unsorted");
         getAllRows();
+        System.out.println();
+        
+        System.out.println("All First Names Sorted");
+        System.out.println(Arrays.toString(bubbleSort(firstNameList)));
+        System.out.println("Query: "+bubbleSort(firstNameList)[0]);
+        searchRow(bubbleSort(firstNameList)[0].toString());
     }
 }
 
