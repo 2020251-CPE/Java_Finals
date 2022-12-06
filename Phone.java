@@ -1,4 +1,4 @@
-package Java_Finals.packages;
+//package Java_Finals;
 
 import java.util.ArrayList;
 import javax.swing.*;
@@ -88,34 +88,56 @@ public class Phone{
     }
     //SORT first name (used for GUI only, not really arranging all fields)
     public static String[] bubbleSort(ArrayList<String> arr){
-        String[] countries = arr.toArray(String[]::new);
-        int size = countries.length;  
+        String[] array = arr.toArray(String[]::new);
+        int size = array.length;  
         for(int i = 0; i<size-1; i++){  
-            for (int j = i+1; j<countries.length; j++){  
+            for (int j = i+1; j<array.length; j++){  
             //compares each elements of the array to all the remaining elements  
-                if(countries[i].compareTo(countries[j])>0){  
+                if(array[i].compareTo(array[j])>0){  
                     //swapping array elements  
-                    String temp = countries[i];  
-                    countries[i] = countries[j];  
-                    countries[j] = temp;  
+                    String temp = array[i];  
+                    array[i] = array[j];  
+                    array[j] = temp;  
                 }  
             }  
         }  
-        return countries; //returns String[]
+        return array; //returns String[]
     }
     public static JFrame mainF;
+    public static JScrollPane selection;
     public static void app(){
         mainF = new JFrame("Phonebook");
         mainF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainF.getContentPane().setBackground(Color.GRAY);
+        mainF.getContentPane().setBackground(Color.LIGHT_GRAY);
         mainF.setResizable(false);
-
+        String[] names = bubbleSort(firstNameList);
+            JList<String> items = new JList<String>(names);  
+                
+        selection = new JScrollPane(items);
+            selection.setBounds(10,10,150,240);
+            selection.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+                   
+        mainF.add(selection);
         mainF.setSize(500,300);
         mainF.setLayout(null);  
         mainF.setVisible(true);
     }
     public static void main(String[] args) {
-        
+        //Data Structuring
+        db.add(firstNameList);
+        db.add(lastNameList);
+        db.add(BirthdayList);
+        db.add(AddressList);
+        db.add(EmailList);
+        db.add(numberList);
+        //adding Sample data
+        addRow("Joe", "Mama", "04-20-6969", "YoMama", "ElonMusk@gmail.com", "09255224380");
+        addRow("Jedrick", "Idol", "02-20-1993", "Worldwide", "BestTiktoker@tiktok.com", "09876543210");
+        addRow("Angelo", "Recio", "07-02-2001", "Balete", "2020251@ub.edu.ph", "097725778170");
+        //initializing app
+        app();
+        addRow("Nice", "Guy", "01-01-2001", "SimpTown", "allWomenAreQueens@gmail.com", "09696969696");
+        selection.revalidate();
     }
     
 }
