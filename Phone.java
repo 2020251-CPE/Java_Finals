@@ -2,6 +2,10 @@
 
 import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import javax.swing.event.MouseInputAdapter;
+
+
 import java.awt.Color;
 
 public class Phone{
@@ -103,6 +107,9 @@ public class Phone{
         }  
         return array; //returns String[]
     }
+    public static void mouseClicked(MouseEvent event){
+        System.out.println("test"); 
+    }
     public static JFrame mainF;
     public static JScrollPane selection;
     public static void app(){
@@ -112,6 +119,14 @@ public class Phone{
         mainF.setResizable(false);
         String[] names = bubbleSort(firstNameList);
             JList<String> items = new JList<String>(names);  
+            items.addMouseListener(new MouseInputAdapter() {
+                
+               @Override
+               public void mouseClicked(MouseEvent e) {
+                   // TODO Auto-generated method stub
+                   System.out.println("lol");
+               }
+            });
                 
         selection = new JScrollPane(items);
             selection.setBounds(10,10,150,240);
