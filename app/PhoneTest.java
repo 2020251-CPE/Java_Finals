@@ -1,18 +1,17 @@
 package Java_Finals;
 
-package ;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Arrays;
 
 public class Phone{
-    public static ArrayList<ArrayList<String>> db = new ArrayList<ArrayList<String>>();
-    public static ArrayList<String> firstNameList = new ArrayList<String>();
-    public static ArrayList<String> lastNameList = new ArrayList<String>();
-    public static ArrayList<String> BirthdayList = new ArrayList<String>();
-    public static ArrayList<String> AddressList = new ArrayList<String>();
-    public static ArrayList<String> EmailList = new ArrayList<String>();
-    public static ArrayList<String> numberList = new ArrayList<String>();
+    public static LinkedList<LinkedList<String>> db = new LinkedList<LinkedList<String>>();
+    public static LinkedList<String> firstNameList = new LinkedList<String>();
+    public static LinkedList<String> lastNameList = new LinkedList<String>();
+    public static LinkedList<String> BirthdayList = new LinkedList<String>();
+    public static LinkedList<String> AddressList = new LinkedList<String>();
+    public static LinkedList<String> EmailList = new LinkedList<String>();
+    public static LinkedList<String> numberList = new LinkedList<String>();
     //CREATE
     public static void addRow(String fName, String lName, String BDay, String Addr,String email, String number){
         firstNameList.add(fName);
@@ -37,7 +36,7 @@ public class Phone{
         }
     }
     // READ a single row
-    public static void searchRow(String query, ArrayList<String> field){
+    public static void searchRow(String query, LinkedList<String> field){
         try {
             for (int i = 0; i < field.size(); i++) {
                 if (field.get(i).equals(query)) {
@@ -56,7 +55,7 @@ public class Phone{
         }
     }
     //UPDATE in any field
-    public static void updateRow(String fName,ArrayList<String> field, String input) {
+    public static void updateRow(String fName,LinkedList<String> field, String input) {
         try {
             for (int i = 0; i < firstNameList.size(); i++) {
                 if (firstNameList.get(i).equals(fName)) {
@@ -88,7 +87,7 @@ public class Phone{
         
     }
     //SORT first name (used for GUI only, not really arranging all fields)
-    static String[] bubbleSort(ArrayList<String> arr){
+    static String[] bubbleSort(LinkedList<String> arr){
         String[] countries = arr.toArray(String[]::new);
         int size = countries.length;  
         for(int i = 0; i<size-1; i++){  
