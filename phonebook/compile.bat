@@ -6,7 +6,7 @@
     :: Compiling files
 javac CRUD_Interface.java
 javac -d . CRUD_Interface.java
-javac MainF.javac
+javac MainF.java
 javac -d . MainF.java
 javac Phonebook.java
 javac -d . Phonebook.java
