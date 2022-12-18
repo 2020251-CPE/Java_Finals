@@ -5,12 +5,14 @@
 package phonebook;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
 
 
 /**
@@ -44,19 +46,23 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         jLabel12 = new javax.swing.JLabel();
         LastNameInput = new javax.swing.JTextField();
         FirstNameInput = new javax.swing.JTextField();
-        BirthdayInput = new javax.swing.JTextField();
+        BirthDayInput = new javax.swing.JTextField();
         NumberInput = new javax.swing.JTextField();
         EmailInput = new javax.swing.JTextField();
         AddressInput = new javax.swing.JTextField();
         SubmitButton = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         AddEntryBackButton = new javax.swing.JButton();
+        BirthMonthInput = new javax.swing.JTextField();
+        BirthYearInput = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         UpdateEntryDialog = new javax.swing.JDialog();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         LastNameTextField = new javax.swing.JTextField();
         FirstNameTextField = new javax.swing.JTextField();
-        BirthdayTextField = new javax.swing.JTextField();
+        BirthDayTextField = new javax.swing.JTextField();
         NumberTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -67,6 +73,10 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        BirthMonthTextField = new javax.swing.JTextField();
+        BirthYearTextField = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>(model);
@@ -88,7 +98,8 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         title = new javax.swing.JLabel();
         AddEntry = new javax.swing.JButton();
 
-        AddEntryDialog.setMinimumSize(new java.awt.Dimension(230, 265));
+        AddEntryDialog.setMinimumSize(new java.awt.Dimension(270, 265));
+        AddEntryDialog.setPreferredSize(new java.awt.Dimension(270, 265));
 
         jLabel7.setText("First Name:");
 
@@ -103,11 +114,23 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         jLabel12.setText("Email:");
 
         LastNameInput.setToolTipText("");
-
-        BirthdayInput.setToolTipText("");
-        BirthdayInput.addActionListener(new java.awt.event.ActionListener() {
+        LastNameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BirthdayInputActionPerformed(evt);
+                LastNameInputActionPerformed(evt);
+            }
+        });
+
+        BirthDayInput.setText("dd");
+        BirthDayInput.setToolTipText("");
+        BirthDayInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BirthDayInputActionPerformed(evt);
+            }
+        });
+        BirthDayInput.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthDayInput,2);
             }
         });
 
@@ -128,6 +151,37 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 AddEntryBackButtonActionPerformed(evt);
             }
         });
+
+        BirthMonthInput.setText("mm");
+        BirthMonthInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BirthMonthInputActionPerformed(evt);
+            }
+        });
+        BirthMonthInput.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthMonthInput,2);
+            }
+        });
+
+        BirthYearInput.setText("yyyy");
+        BirthYearInput.setToolTipText("");
+        BirthYearInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BirthYearInputActionPerformed(evt);
+            }
+        });
+        BirthYearInput.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthYearInput,4);
+            }
+        });
+
+        jLabel21.setText("/");
+
+        jLabel22.setText("/");
 
         javax.swing.GroupLayout AddEntryDialogLayout = new javax.swing.GroupLayout(AddEntryDialog.getContentPane());
         AddEntryDialog.getContentPane().setLayout(AddEntryDialogLayout);
@@ -159,12 +213,21 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                                 .addGroup(AddEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(AddEntryDialogLayout.createSequentialGroup()
                                         .addComponent(AddEntryBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                                         .addComponent(SubmitButton))
                                     .addComponent(EmailInput, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(AddressInput, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(NumberInput, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(BirthdayInput)))))
+                                    .addGroup(AddEntryDialogLayout.createSequentialGroup()
+                                        .addComponent(BirthDayInput, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(jLabel22)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(BirthMonthInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel21)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(BirthYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddEntryDialogLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel13)
@@ -187,7 +250,11 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AddEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(BirthdayInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BirthDayInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BirthMonthInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BirthYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AddEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,24 +271,31 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 .addGroup(AddEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddEntryBackButton)
                     .addComponent(SubmitButton))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        NumberInput.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,NumberInput,11);
+            }
+        });
         SubmitButton.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (FirstNameInput.getText().isEmpty()||LastNameInput.getText().isEmpty()||BirthdayInput.getText().isEmpty()||AddressInput.getText().isEmpty()||EmailInput.getText().isEmpty()||NumberInput.getText().isEmpty()){
-                    System.out.println("????");
-                    JOptionPane.showMessageDialog(AddEntryDialog,"Error: Incomplete Data","Error",JOptionPane.ERROR_MESSAGE);
+                String fullDate = BirthDayInput.getText()+"/"+BirthMonthInput.getText()+"/"+BirthYearInput.getText();
+                if (FirstNameInput.getText().isEmpty()||LastNameInput.getText().isEmpty()||BirthDayInput.getText().isEmpty()||AddressInput.getText().isEmpty()||EmailInput.getText().isEmpty()||NumberInput.getText().isEmpty()){
+
+                    System.out.println("Error: Incomplete/Improper Data");
+                    JOptionPane.showMessageDialog(AddEntryDialog,"Error: Incomplete/Improper","Error",JOptionPane.ERROR_MESSAGE);
                 } else{
-                    CRUD_Interface.addRow(FirstNameInput.getText(), LastNameInput.getText(), BirthdayInput.getText(), AddressInput.getText(), EmailInput.getText(), NumberInput.getText());
+                    CRUD_Interface.addRow(FirstNameInput.getText(), LastNameInput.getText(), fullDate, AddressInput.getText(), EmailInput.getText(), NumberInput.getText());
                     int index = (model.isEmpty())? 0:indexLocate(model,convertToTitleCaseIteratingChars(FirstNameInput.getText()));
                     model.add(index, FirstNameInput.getText());
                     System.out.println(indexLocate(model,convertToTitleCaseIteratingChars(FirstNameInput.getText())));
                     AddEntryDialog.dispose();
                 }
-
             }
         });
 
@@ -230,7 +304,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
 
         jLabel14.setText("Address:");
 
-        jLabel15.setText("Email:");
+        jLabel15.setText("/");
 
         LastNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,9 +318,16 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             }
         });
 
-        BirthdayTextField.addActionListener(new java.awt.event.ActionListener() {
+        BirthDayTextField.setName(""); // NOI18N
+        BirthDayTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BirthdayTextFieldActionPerformed(evt);
+                BirthDayTextFieldActionPerformed(evt);
+            }
+        });
+        BirthDayTextField.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthDayTextField,2);
             }
         });
 
@@ -294,6 +375,16 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             }
         });
 
+        BirthMonthTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BirthMonthTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("Email:");
+
+        jLabel24.setText("/");
+
         javax.swing.GroupLayout UpdateEntryDialogLayout = new javax.swing.GroupLayout(UpdateEntryDialog.getContentPane());
         UpdateEntryDialog.getContentPane().setLayout(UpdateEntryDialogLayout);
         UpdateEntryDialogLayout.setHorizontalGroup(
@@ -311,14 +402,23 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                             .addGroup(UpdateEntryDialogLayout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(NumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BirthdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(UpdateEntryDialogLayout.createSequentialGroup()
+                                        .addComponent(BirthDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(jLabel24)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(BirthMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BirthYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel20)
                             .addGroup(UpdateEntryDialogLayout.createSequentialGroup()
                                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel14)
-                                    .addComponent(jLabel15))
+                                    .addComponent(jLabel23))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, UpdateEntryDialogLayout.createSequentialGroup()
@@ -333,7 +433,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                         .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
                             .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         UpdateEntryDialogLayout.setVerticalGroup(
             UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,7 +451,11 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(BirthdayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BirthDayTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BirthMonthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BirthYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,8 +466,8 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                     .addComponent(AddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateEntryDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UpdateButton)
@@ -371,9 +475,27 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
+        NumberTextField.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,NumberTextField,11);
+            }
+        });
+        BirthMonthTextField.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthMonthTextField,2);
+            }
+        });
+        BirthYearTextField.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent ke){
+                keyStrokeValidate(ke,BirthYearTextField,4);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(450, 300));
-        setPreferredSize(new java.awt.Dimension(450, 300));
 
         jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(268, 268));
@@ -428,19 +550,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
 
         jLabel6.setText("Email:");
 
-        LastNameOutput.setText("xxx-xxx");
-
-        FirstNameOutput.setText("xxx-xxx");
-
-        BirthdayOutput.setText("xxx-xxx");
-
-        NumberOutput.setText("xxx-xxx");
-
-        AddressOutput.setText("xxx-xxx");
-
-        EmailOutput.setText("xxx-xxx");
-
-        DeleteEntry.setText("Delete Entry");
+        DeleteEntry.setText("Delete Info");
         DeleteEntry.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DeleteEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -448,7 +558,8 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             }
         });
 
-        UpdateEntry.setText("Update Entry");
+        UpdateEntry.setText("Update Info");
+        UpdateEntry.setToolTipText("");
         UpdateEntry.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         UpdateEntry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,6 +688,27 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public static void keyStrokeValidate(KeyEvent ke,JTextField InputComponent, int CharCount){
+        String field = InputComponent.getText();
+        if ((( ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')&& field.length()  <= CharCount-1)
+            ||(ke.getKeyChar() == '-')
+            || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+            || ke.getKeyCode() == KeyEvent.VK_DELETE
+            ){
+            InputComponent.setEditable(true);
+        } else{
+            InputComponent.setEditable(false);
+        }
+    }
+    private static boolean InputVerifier(String date,String Email,String number) {
+        if (date.matches("^[0-9/]*$")&&Email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")&&number.matches("^[0-9.-]*$")){
+            System.out.println("Data Passes Regex Verification");
+            return true;     
+        } else{
+            System.out.println("Data Did not Pass Regex Verification");
+            return false;
+        }
+    }
     public static int indexLocate(DefaultListModel<String> model, String input){
             int i;
             for (i=0;i<model.size();i++){
@@ -619,13 +751,29 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     
 
     private void UpdateEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateEntryActionPerformed
-        UpdateEntryDialog.setVisible(true);
-        FirstNameTextField.setText(FirstNameOutput.getText());
-        LastNameTextField.setText(LastNameOutput.getText());
-        AddressTextField.setText(AddressOutput.getText());
-        BirthdayTextField.setText(BirthdayOutput.getText());
-        EmailTextField.setText(EmailOutput.getText());
-        NumberTextField.setText(NumberOutput.getText());
+        if(FirstNameOutput.getText().isEmpty()
+            ||LastNameOutput.getText().isEmpty()
+            ||AddressOutput.getText().isEmpty()
+            ||BirthdayOutput.getText().isEmpty()
+            || EmailOutput.getText().isEmpty()
+            ||NumberOutput.getText().isEmpty()){
+            
+            System.out.println("Error: No Info to Update");
+            JOptionPane.showMessageDialog(jPanel1,"Error: No Info to Update","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            UpdateEntryDialog.setVisible(true);
+            FirstNameTextField.setText(FirstNameOutput.getText());
+            LastNameTextField.setText(LastNameOutput.getText());
+            AddressTextField.setText(AddressOutput.getText());
+            String[] DateSplices = BirthdayOutput.getText().split("/");
+            BirthDayTextField.setText(DateSplices[0]);
+            BirthMonthTextField.setText(DateSplices[1]);
+            BirthYearTextField.setText(DateSplices[2]);
+            EmailTextField.setText(EmailOutput.getText());
+            NumberTextField.setText(NumberOutput.getText());
+        }
+        
+        
     }//GEN-LAST:event_UpdateEntryActionPerformed
     private static void DeleteGUIChoice(DefaultListModel<String> model, String input ){
         try{
@@ -644,30 +792,40 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     }
     private void DeleteEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteEntryActionPerformed
         // TODO add your handling code here:
-        String[] choices= {"Yes","No"};
-        int response=JOptionPane.showOptionDialog(this, "Do you confirm the Deletion of These Data?", "Deletion Confirmation", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
-        switch (response) {
-            case 0 -> {
-                CRUD_Interface.deleteRow(FirstNameOutput.getText(), EmailOutput.getText());
-                DeleteGUIChoice(model,FirstNameOutput.getText());
-                System.out.println("Data Deleted");
-                FirstNameOutput.setText("");
-                LastNameOutput.setText("");
-                AddressOutput.setText("");
-                BirthdayOutput.setText("");
-                EmailOutput.setText("");
-                NumberOutput.setText("");
-                CRUD_Interface.getAllRows();
+        if(FirstNameOutput.getText().isEmpty()
+            ||LastNameOutput.getText().isEmpty()
+            ||AddressOutput.getText().isEmpty()
+            ||BirthdayOutput.getText().isEmpty()
+            || EmailOutput.getText().isEmpty()
+            ||NumberOutput.getText().isEmpty()){
+            
+            System.out.println("Error: No Info to Delete");
+            JOptionPane.showMessageDialog(jPanel1,"Error: No Info to Delete","Error",JOptionPane.ERROR_MESSAGE);
+        }else{
+            String[] choices= {"Yes","No"};
+            int response=JOptionPane.showOptionDialog(this, "Do you confirm the Deletion of These Data?", "Deletion Confirmation", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
+            switch (response) {
+                case 0 -> {
+                    CRUD_Interface.deleteRow(FirstNameOutput.getText(), EmailOutput.getText());
+                    DeleteGUIChoice(model,FirstNameOutput.getText());
+                    System.out.println("Data Deleted");
+                    FirstNameOutput.setText("");
+                    LastNameOutput.setText("");
+                    AddressOutput.setText("");
+                    BirthdayOutput.setText("");
+                    EmailOutput.setText("");
+                    NumberOutput.setText("");
+                    CRUD_Interface.getAllRows();
+                }
+                case 1 -> System.out.println("Deletion cancelled");
+                default -> System.out.println("No Choice");
             }
-            case 1 -> System.out.println("Deletion cancelled");
-            default -> System.out.println("No Choice");
         }
-        
     }//GEN-LAST:event_DeleteEntryActionPerformed
 
-    private void BirthdayInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthdayInputActionPerformed
+    private void BirthDayInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthDayInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BirthdayInputActionPerformed
+    }//GEN-LAST:event_BirthDayInputActionPerformed
 
     private void LastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameTextFieldActionPerformed
         // TODO add your handling code here:
@@ -677,9 +835,10 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         // TODO add your handling code here:
     }//GEN-LAST:event_FirstNameTextFieldActionPerformed
 
-    private void BirthdayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthdayTextFieldActionPerformed
+    private void BirthDayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthDayTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BirthdayTextFieldActionPerformed
+        
+    }//GEN-LAST:event_BirthDayTextFieldActionPerformed
 
     private void NumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberTextFieldActionPerformed
         // TODO add your handling code here:
@@ -695,22 +854,29 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
 
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
         // TODO add your handling code here:
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.firstNameList, FirstNameTextField.getText());
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.lastNameList, LastNameTextField.getText());
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.BirthdayList, BirthdayTextField.getText());
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.numberList, NumberTextField.getText());
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.AddressList, AddressTextField.getText());
-        CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.EmailList, EmailTextField.getText());
-        model.removeElement(FirstNameOutput.getText());
-        model.add(indexLocate(model,convertToTitleCaseIteratingChars(FirstNameTextField.getText())), FirstNameTextField.getText());
-        FirstNameOutput.setText(FirstNameTextField.getText());
-        LastNameOutput.setText(LastNameTextField.getText());
-        BirthdayOutput.setText(BirthdayTextField.getText());
-        NumberOutput.setText(NumberTextField.getText());
-        AddressOutput.setText(AddressTextField.getText());
-        EmailOutput.setText(EmailTextField.getText());
-        UpdateEntryDialog.dispose();
-        CRUD_Interface.getAllRows();
+        String NewBirthDate = BirthDayTextField.getText()+"/"+BirthMonthTextField.getText()+"/"+BirthYearTextField.getText();
+        if(InputVerifier(NewBirthDate, EmailTextField.getText(),NumberTextField.getText())){
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.firstNameList, FirstNameTextField.getText());
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.lastNameList, LastNameTextField.getText());
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.BirthdayList, NewBirthDate);
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.numberList, NumberTextField.getText());
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.AddressList, AddressTextField.getText());
+            CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.EmailList, EmailTextField.getText());
+            model.removeElement(FirstNameOutput.getText());
+            model.add(indexLocate(model,   convertToTitleCaseIteratingChars(FirstNameTextField.getText())),FirstNameTextField.getText());
+            FirstNameOutput.setText(FirstNameTextField.getText());
+            LastNameOutput.setText(LastNameTextField.getText());
+            BirthdayOutput.setText(NewBirthDate);
+            NumberOutput.setText(NumberTextField.getText());
+            AddressOutput.setText(AddressTextField.getText());
+            EmailOutput.setText(EmailTextField.getText());
+            UpdateEntryDialog.dispose();
+            CRUD_Interface.getAllRows();
+        }else{
+            JOptionPane.showMessageDialog( UpdateEntryDialog,"Error: Incorrect Data","Error",JOptionPane.ERROR_MESSAGE);
+            AddEntryDialog.dispose();
+        }
+        
     }//GEN-LAST:event_UpdateButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -727,6 +893,22 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         // TODO add your handling code here:
         CRUD_Interface.getAllRows();
     }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void BirthMonthInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthMonthInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BirthMonthInputActionPerformed
+
+    private void BirthYearInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthYearInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BirthYearInputActionPerformed
+
+    private void BirthMonthTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BirthMonthTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BirthMonthTextFieldActionPerformed
+
+    private void LastNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LastNameInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -770,9 +952,13 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     private javax.swing.JTextField AddressInput;
     private javax.swing.JLabel AddressOutput;
     private javax.swing.JTextField AddressTextField;
-    private javax.swing.JTextField BirthdayInput;
+    private javax.swing.JTextField BirthDayInput;
+    private javax.swing.JTextField BirthDayTextField;
+    private javax.swing.JTextField BirthMonthInput;
+    private javax.swing.JTextField BirthMonthTextField;
+    private javax.swing.JTextField BirthYearInput;
+    private javax.swing.JTextField BirthYearTextField;
     private javax.swing.JLabel BirthdayOutput;
-    private javax.swing.JTextField BirthdayTextField;
     private javax.swing.JButton DeleteEntry;
     private javax.swing.JTextField EmailInput;
     private javax.swing.JLabel EmailOutput;
@@ -804,6 +990,10 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
