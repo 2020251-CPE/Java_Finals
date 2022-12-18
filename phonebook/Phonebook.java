@@ -16,9 +16,10 @@ public class Phonebook implements CRUD_Interface {
         //Initialize Data Structure
         CRUD_Interface.DB_Initialize();
         //Insert Sample Data
-        CRUD_Interface.addRow("Joe", "Mama", "04-20-6969", "YoMama", "ElonMusk@gmail.com", "09255224380");
-        CRUD_Interface.addRow("Jedrick", "Idol", "02-20-1993", "Worldwide", "BestTiktoker@tiktok.com", "09876543210");
-        CRUD_Interface.addRow("Angelo", "Recio", "07-02-2001", "Balete", "2020251@ub.edu.ph", "097725778170");
+        System.out.println("Adding Sample Data");
+        CRUD_Interface.addRow("Joe", "Mama", "20/04/6969", "YoMama", "ElonMusk@gmail.com", "09255224380");
+        CRUD_Interface.addRow("Jedrick", "Idol", "20/02/1993", "Worldwide", "BestTiktoker@tiktok.com", "09876543210");
+        CRUD_Interface.addRow("Angelo", "Recio", "02/07/2001", "Balete", "2020251@ub.edu.ph", "097725778170");
         //Initialize GUI
         MainF app = new MainF();
         app.setVisible(true);
