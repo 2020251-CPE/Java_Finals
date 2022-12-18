@@ -26,7 +26,7 @@ public interface CRUD_Interface {
         db.add(AddressList);
         db.add(EmailList);
         db.add(numberList);
-        System.out.println("DB Inialized");
+        System.out.println("DB Initialized");
     }
     //CREATE
     public static void addRow(String fName, String lName, String BDay, String Addr,String email, String number){
@@ -101,7 +101,6 @@ public interface CRUD_Interface {
                     AddressList.remove(i);
                     EmailList.remove(i);
                     numberList.remove(i);
- 
                 } 
             }
         } catch (Exception e) {
