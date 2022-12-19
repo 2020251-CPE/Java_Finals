@@ -68,6 +68,22 @@ public interface CRUD_Interface {
         }
         return null;
     }
+    public static String[] SearchAllFields(String query){
+        int i =0;
+        for (LinkedList<String> list: CRUD_Interface.db){
+            for(String substring : CRUD_Interface.db.get(i)){
+                if (query.equals(substring)){
+                   String[] result =  searchRow(query,db.get(i));
+                   System.out.println("Query Success");
+                   return result;
+                }
+            }
+            i++;
+        }
+        String[] emptyArray = {};
+        System.out.println("Query Failed");
+        return emptyArray;
+    }
     //READ all rows
     public static void getAllRows() {
         for (int i = 0; i < firstNameList.size(); i++) {
@@ -101,6 +117,7 @@ public interface CRUD_Interface {
                     AddressList.remove(i);
                     EmailList.remove(i);
                     numberList.remove(i);
+ 
                 } 
             }
         } catch (Exception e) {
