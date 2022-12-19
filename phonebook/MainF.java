@@ -3,10 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package phonebook;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -77,6 +80,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         BirthYearTextField = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        SearchDialog = new javax.swing.JDialog();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>(model);
@@ -97,6 +101,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         UpdateEntry = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         AddEntry = new javax.swing.JButton();
+        SearchButton = new javax.swing.JButton();
 
         AddEntryDialog.setMinimumSize(new java.awt.Dimension(270, 265));
         AddEntryDialog.setPreferredSize(new java.awt.Dimension(270, 265));
@@ -494,6 +499,17 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             }
         });
 
+        javax.swing.GroupLayout SearchDialogLayout = new javax.swing.GroupLayout(SearchDialog.getContentPane());
+        SearchDialog.getContentPane().setLayout(SearchDialogLayout);
+        SearchDialogLayout.setHorizontalGroup(
+            SearchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        SearchDialogLayout.setVerticalGroup(
+            SearchDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(450, 300));
 
@@ -652,6 +668,13 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             }
         });
 
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -661,29 +684,29 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AddEntry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(AddEntry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
                         .addComponent(title)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SearchButton)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AddEntry)))
-                .addGap(120, 120, 120))
+                .addContainerGap())
         );
 
         pack();
@@ -910,6 +933,37 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameInputActionPerformed
 
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+    try{
+        String query = JOptionPane.showInputDialog(rootPane, "Input query here:");  
+        if (CRUD_Interface.SearchAllFields(query)!= null){
+            String[] findings = CRUD_Interface.SearchAllFields(query);
+            FirstNameOutput.setText(findings[0]);
+            LastNameOutput.setText(findings[1]);
+            BirthdayOutput.setText(findings[2]);
+            AddressOutput.setText(findings[3]);
+            EmailOutput.setText(findings[4]);
+            NumberOutput.setText(findings[5]);
+            System.out.println("Found");
+            jList1.setCellRenderer(new DefaultListCellRenderer(){
+                @Override
+                public Component getListCellRendererComponent(JList list, Object value,int index, boolean isSelected, boolean cellHasFocus) {
+                    super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
+                    String num = (String) value;
+                    if (num.equals(findings[0])) {
+                      setBackground(Color.lightGray);
+                    }
+                    return this;
+                }                
+            });
+        }else{
+            System.out.println("not Found");
+        }
+    }catch(Exception err){
+        System.out.println(err);}
+    
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -972,6 +1026,8 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     private javax.swing.JTextField NumberInput;
     private javax.swing.JLabel NumberOutput;
     private javax.swing.JTextField NumberTextField;
+    private javax.swing.JButton SearchButton;
+    private javax.swing.JDialog SearchDialog;
     private javax.swing.JButton SubmitButton;
     private javax.swing.JButton UpdateButton;
     private javax.swing.JButton UpdateEntry;
