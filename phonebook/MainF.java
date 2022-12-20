@@ -5,6 +5,7 @@
 package phonebook;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -782,7 +783,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             ||NumberOutput.getText().isEmpty()){
             
             System.out.println("Error: No Info to Update");
-            JOptionPane.showMessageDialog(jPanel1,"Error: No Info to Update","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Error: No Info to Update","Error",JOptionPane.ERROR_MESSAGE);
         }else{
             UpdateEntryDialog.setVisible(true);
             FirstNameTextField.setText(FirstNameOutput.getText());
@@ -823,7 +824,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             ||NumberOutput.getText().isEmpty()){
             
             System.out.println("Error: No Info to Delete");
-            JOptionPane.showMessageDialog(jPanel1,"Error: No Info to Delete","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Error: No Info to Delete","Error",JOptionPane.ERROR_MESSAGE);
         }else{
             String[] choices= {"Yes","No"};
             int response=JOptionPane.showOptionDialog(this, "Do you confirm the Deletion of These Data?", "Deletion Confirmation", JOptionPane.INFORMATION_MESSAGE, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
@@ -934,36 +935,34 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     }//GEN-LAST:event_LastNameInputActionPerformed
 
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-    try{
-        String query = JOptionPane.showInputDialog(rootPane, "Input query here:");  
-        if (CRUD_Interface.SearchAllFields(query)!= null){
-            String[] findings = CRUD_Interface.SearchAllFields(query);
-            FirstNameOutput.setText(findings[0]);
-            LastNameOutput.setText(findings[1]);
-            BirthdayOutput.setText(findings[2]);
-            AddressOutput.setText(findings[3]);
-            EmailOutput.setText(findings[4]);
-            NumberOutput.setText(findings[5]);
-            System.out.println("Found");
-            jList1.setCellRenderer(new DefaultListCellRenderer(){
-                @Override
-                public Component getListCellRendererComponent(JList list, Object value,int index, boolean isSelected, boolean cellHasFocus) {
-                    super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
-                    String num = (String) value;
-                    if (num.equals(findings[0])) {
-                      setBackground(Color.lightGray);
-                    }
-                    return this;
-                }                
-            });
-        }else{
+        try{
+            String query = JOptionPane.showInputDialog(rootPane, "Input query here (case-sensitive):");  
+            if (CRUD_Interface.SearchAllFields(query)!= null){
+                String[] findings = CRUD_Interface.SearchAllFields(query);
+                FirstNameOutput.setText(findings[0]);
+                LastNameOutput.setText(findings[1]);
+                BirthdayOutput.setText(findings[2]);
+                AddressOutput.setText(findings[3]);
+                EmailOutput.setText(findings[4]);
+                NumberOutput.setText(findings[5]);
+                System.out.println("Found");
+                jList1.setCellRenderer(new DefaultListCellRenderer(){
+                    @Override
+                    public Component getListCellRendererComponent(JList list, Object value,int index, boolean isSelected, boolean cellHasFocus) {
+                        super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
+                        String num = (String) value;
+                        if (num.equals(findings[0])) {
+                          setBackground(Color.lightGray);
+                        }
+                        return this;
+                    }                
+                });
+            }
+        }catch(ArrayIndexOutOfBoundsException err){
+            JOptionPane.showMessageDialog(rootPane,"Error: Query Not Found","Error",JOptionPane.ERROR_MESSAGE);
             System.out.println("not Found");
         }
-    }catch(Exception err){
-        System.out.println(err);}
-    
     }//GEN-LAST:event_SearchButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
