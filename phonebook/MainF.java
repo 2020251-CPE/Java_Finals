@@ -291,7 +291,14 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String fullDate = BirthDayInput.getText()+"/"+BirthMonthInput.getText()+"/"+BirthYearInput.getText();
-                if (FirstNameInput.getText().isEmpty()||LastNameInput.getText().isEmpty()||BirthDayInput.getText().isEmpty()||AddressInput.getText().isEmpty()||EmailInput.getText().isEmpty()||NumberInput.getText().isEmpty()){
+                if (FirstNameInput.getText().isEmpty()
+                    ||LastNameInput.getText().isEmpty()
+                    ||BirthDayInput.getText().isEmpty()
+                    ||BirthMonthInput.getText().isEmpty()
+                    ||BirthYearInput.getText().isEmpty()
+                    ||AddressInput.getText().isEmpty()
+                    ||EmailInput.getText().isEmpty()
+                    ||NumberInput.getText().isEmpty()){
 
                     System.out.println("Error: Incomplete/Improper Data");
                     JOptionPane.showMessageDialog(AddEntryDialog,"Error: Incomplete/Improper","Error",JOptionPane.ERROR_MESSAGE);
@@ -779,7 +786,7 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
             ||LastNameOutput.getText().isEmpty()
             ||AddressOutput.getText().isEmpty()
             ||BirthdayOutput.getText().isEmpty()
-            || EmailOutput.getText().isEmpty()
+            ||EmailOutput.getText().isEmpty()
             ||NumberOutput.getText().isEmpty()){
             
             System.out.println("Error: No Info to Update");
@@ -879,7 +886,16 @@ public class MainF extends javax.swing.JFrame implements CRUD_Interface{
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
         // TODO add your handling code here:
         String NewBirthDate = BirthDayTextField.getText()+"/"+BirthMonthTextField.getText()+"/"+BirthYearTextField.getText();
-        if(InputVerifier(NewBirthDate, EmailTextField.getText(),NumberTextField.getText())){
+        if(InputVerifier(NewBirthDate, EmailTextField.getText(),NumberTextField.getText())&&
+            !(FirstNameTextField.getText().isEmpty()||
+            LastNameTextField.getText().isEmpty()||
+            BirthDayTextField.getText().isEmpty()||
+            BirthMonthTextField.getText().isEmpty()||
+            BirthYearTextField.getText().isEmpty()||
+            NumberTextField.getText().isEmpty()||
+            AddressTextField.getText().isEmpty()||
+            EmailTextField.getText().isEmpty()
+            )){
             CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.firstNameList, FirstNameTextField.getText());
             CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.lastNameList, LastNameTextField.getText());
             CRUD_Interface.updateRow(FirstNameOutput.getText(),CRUD_Interface.BirthdayList, NewBirthDate);
