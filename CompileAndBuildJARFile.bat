@@ -21,3 +21,4 @@ jar -cvfm ../Phonebook.jar manifest.mf phonebook/ *.class
     :: Run the .jar file
 cd ..
 java -jar Phonebook.jar
+::PAUSE
