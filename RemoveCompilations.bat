@@ -8,4 +8,5 @@ cd phonebook
 
 del *.class
 
+cd ../..
 echo Removing of Compilations Successfull
