@@ -5,20 +5,18 @@
 cd phonebook
 :: MAIN COMMANDS
     :: Compiling files
-javac CRUD_Interface.java
+echo COMPILING JAVA...
 javac -d . CRUD_Interface.java
-javac MainF.java
 javac -d . MainF.java
-javac Phonebook.java
 javac -d . Phonebook.java
-    :: Running the Main Java File
-:: java phonebook.Phonebook (Optional, uncomment to enable)
     ::Creating Manifest File
+echo CREATING MANIFEST FILE...
 echo Main-Class: phonebook.Phonebook > manifest.mf  
     ::Making .jar files
+echo .JAR FILE...
 jar -cvfm Phonebook.jar manifest.mf phonebook/ *.class
 jar -cvfm ../Phonebook.jar manifest.mf phonebook/ *.class    
-    :: Run the .jar file
+echo COMPILATIONS COMPLETE
+echo RUNNING FILE
 cd ..
 java -jar Phonebook.jar
-::PAUSE
