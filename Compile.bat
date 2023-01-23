@@ -1,7 +1,7 @@
 
 :: NOTE->java should be installed and added to Path Environment to work
 :: Maybe running this Batch file wont work and if that happens, just copy each line of command to the terminal/cmd and press enter
-
+@echo off 
 cd phonebook
 :: MAIN COMMANDS
     :: Compiling files
@@ -13,7 +13,7 @@ javac -d . Phonebook.java
 echo CREATING MANIFEST FILE...
 echo Main-Class: phonebook.Phonebook > manifest.mf  
     ::Making .jar files
-echo .JAR FILE...
+echo CREATING .JAR FILE...
 jar -cvfm Phonebook.jar manifest.mf phonebook/ *.class
 jar -cvfm ../Phonebook.jar manifest.mf phonebook/ *.class    
 echo COMPILATIONS COMPLETE
