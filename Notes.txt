@@ -1,0 +1,18 @@
+
+- The Phonebook illustrates the CRUD method or Create, Read, Update, Delete.
+- This means that usage of Arrays to store its items in different fields.
+- LinkeList<String> are used to store data, the age are stored in String as well since there would be
+    no computations/alterations to the numbers. If there were, the value will just be parsed to int/float
+    to be used for computations and then parsed back to string to be stored back.
+- Values are stored in memory. storing them in a DB or a txt. file were considered but was not the priority since
+    the Purpose of this project is to prove the the developer can manipulate and sort data.
+- App Details:
+    > Sorting Method = Bubble Sort (Manually coded)
+    > IDEs Used = VS Code, Netbeans
+- The Whole source code is made up of these files:
+    > CRUD_Interface.java = deals with the manipulation, sorting, and storage of data
+    > MainF.java & MainF.form = responsible for the GUI and event listeners of the app
+    > Phonebook.java = starting point of the app, responsible for the sequence of loading
+    > Manifest.mf = config file responsible for the starting class to run the app form
+    > Compile.bat = compiles the .java files and creates the .jar file
+    > RemoveCompilations.bat = removes all compiled bytecode and .jar files
